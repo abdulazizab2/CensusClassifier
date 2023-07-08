@@ -1,5 +1,20 @@
+import os
+import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+from CensusClassifier.utils.logger import logging
+
+
+def load_data(data_path):
+    if not os.path.exists(data_path):
+        logging.error(
+            "ERROR: cleaned_df.csv doesn't exist. Make sure you pulled df using dvc pull"
+        )
+        raise FileNotFoundError(
+            "cleaned_df.csv is not found. Make sure you pulled df using dvc pull"
+        )
+    logging.info("INFO: data is loaded successfully")
+    return pd.read_csv(data_path)
 
 
 def process_data(

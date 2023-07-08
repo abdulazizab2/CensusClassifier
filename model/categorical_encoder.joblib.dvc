@@ -1,0 +1,5 @@
+outs:
+- md5: 541a099a961661a4f43d6b80e4ad2aee
+  size: 4108
+  hash: md5
+  path: categorical_encoder.joblib

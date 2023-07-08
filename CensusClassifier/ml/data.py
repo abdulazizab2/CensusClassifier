@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 from CensusClassifier.utils.logger import logging
+import joblib
 
 
 def load_data(data_path):
@@ -72,6 +73,8 @@ def process_data(
         encoder = OneHotEncoder(sparse=False, handle_unknown="ignore")
         lb = LabelBinarizer()
         X_categorical = encoder.fit_transform(X_categorical)
+        joblib.dump(encoder, "./model/categorical_encoder.joblib")
+        logging.info("INFO: categorical encoder is saved in model/")
         y = lb.fit_transform(y.values).ravel()
     else:
         X_categorical = encoder.transform(X_categorical)

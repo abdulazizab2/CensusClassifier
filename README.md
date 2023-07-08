@@ -9,7 +9,26 @@
 
 ```bash
 pip install -r requirements.txt
-dvc pull
 # Optional for downloading EDA notebook
 wandb artifact get abdulazizab/census-classification/job-https___github.com_abdulazizab2_CensusClassifier.git_explore_census_dataset.ipynb:v0
+```
+
+# Usage
+```bash
+dvc pull # fetched data and model
+export PYTHONPATH=${PYTHONPATH}:{PROJECT_ROOT}
+```
+
+## Training
+```bash
+python CensusClassifier/train_model.py
+```
+
+## Inference
+```bash
+pass
+```
+## Unit Tests
+```bash
+pass
 ```

@@ -8,3 +8,5 @@ uvicorn
 gunicorn
 pre-commit
 wandb
+dvc
+dvc_gdrive

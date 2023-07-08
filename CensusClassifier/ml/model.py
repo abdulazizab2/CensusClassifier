@@ -1,8 +1,17 @@
-from sklearn.metrics import fbeta_score, precision_score, recall_score
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, f1_score
-from CensusClassifier.utils.logger import logging
 import joblib
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    f1_score,
+    fbeta_score,
+    precision_score,
+    recall_score,
+)
+from CensusClassifier.utils.logger import logging
+from typing import Dict
 
 
 def train_model(X_train, y_train):
@@ -28,8 +37,8 @@ def train_model(X_train, y_train):
     return rf_classifier
 
 
-def load_model():
-    pass
+def load_model(model_path):
+    return joblib.load(model_path)
 
 
 def compute_model_metrics(y, preds):
@@ -59,7 +68,7 @@ def inference(model, X):
 
     Inputs
     ------
-    model : ???
+    model : sklearn.ensemble
         Trained machine learning model.
     X : np.array
         Data used for prediction.
@@ -68,4 +77,48 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
-    pass
+    return model.predict(X)
+
+
+def compute_sliced_model_metrics_categorical(
+    df: pd.DataFrame, feature: str, y: np.ndarray, preds: np.ndarray
+) -> pd.DataFrame:
+    """
+    Compute the performance of a model on slices for a given categorical feature
+
+    Args:
+        df (pd.DataFrame): pre-processed dataframe
+        feature (str): name of the column to perform slicing
+        y (np.array): known labels
+        preds (np.array): predictions
+
+    Returns:
+        Dict: A pandas dataframe containing the slice metrics
+    """
+
+    if not isinstance(df[feature].dtype, object):
+        raise ValueError(
+            f"Function expects a categorical feature. A non-categorical feature: {feature} is given"
+        )
+
+    slices = df[feature].unique().tolist()
+    metrics_slices_df = pd.DataFrame(
+        columns=["feature", "slice", "slice_samples", "precision", "recall", "fbeta"]
+    )
+    for slice in slices:
+        mask = df[feature] == slice
+        slice_samples = np.array(mask).sum()
+        y_slice = y[mask]
+        preds_slice = preds[mask]
+
+        precision, recall, fbeta = compute_model_metrics(y_slice, preds_slice)
+        metrics_slices_df.loc[len(metrics_slices_df)] = {
+            "feature": feature,
+            "slice": slice,
+            "slice_samples": slice_samples,
+            "precision": precision,
+            "recall": recall,
+            "fbeta": fbeta,
+        }
+
+    return metrics_slices_df

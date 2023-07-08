@@ -1,7 +1,10 @@
 from sklearn.metrics import fbeta_score, precision_score, recall_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, f1_score
+from CensusClassifier.utils.logger import logging
+import joblib
 
 
-# Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
     """
     Trains a machine learning model and returns it.
@@ -17,7 +20,15 @@ def train_model(X_train, y_train):
     model
         Trained machine learning model.
     """
+    rf_classifier = RandomForestClassifier(random_state=42)
+    logging.info("INFO: Random forest classifier is training ...")
+    rf_classifier.fit(X_train, y_train)
+    joblib.dump(rf_classifier, "./model/census-rf.joblib")
+    logging.info("INFO: Random forest classifier is saved in model/")
+    return rf_classifier
 
+
+def load_model():
     pass
 
 

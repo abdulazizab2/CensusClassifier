@@ -2,9 +2,6 @@
 
 - [Repository](https://github.com/abdulazizab2/CensusClassifier)
 - [WandB](https://wandb.ai/abdulazizab/census-classification?workspace=user-abdulazizab) for viewing experiments and exploratory data analysis code artifacts
-# Requirements
-
-- [DVC](https://wandb.ai/abdulazizab/census-classification?workspace=user-abdulazizab) for fetching data and models
 # Installation
 
 ```bash
@@ -15,13 +12,12 @@ wandb artifact get abdulazizab/census-classification/job-https___github.com_abdu
 
 # Usage
 ```bash
-dvc pull # fetched data and model
-export PYTHONPATH=${PYTHONPATH}:{PROJECT_ROOT}
+dvc pull -r remote-gdrive # fetched data and model
 ```
 
 ## Training
 ```bash
-python CensusClassifier/train_model.py
+PYTHONPATH=. python CensusClassifier/train_model.py
 ```
 
 ## Inference

@@ -1,8 +1,10 @@
-import setuptools
+from setuptools import setup, find_packages
 
-setuptools.setup(
-    name="starter",
-    version="0.0.0",
-    description="Starter code.",
-    author="Student",
+setup(
+    name="CensusClassifier",
+    version="0.0.1",
+    description="CensusClassifier package.",
+    author="abdulazizab2",
+    packages=find_packages(include=["CensusClassifier", "CensusClassifier.*"]),
+    install_requires=[],
 )

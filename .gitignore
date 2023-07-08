@@ -1,2 +1,4 @@
 wandb/
 EDA/
+__pycache__/
+*.log

@@ -2,6 +2,13 @@
 
 - [Repository](https://github.com/abdulazizab2/CensusClassifier)
 - [WandB](https://wandb.ai/abdulazizab/census-classification?workspace=user-abdulazizab) for viewing experiments and exploratory data analysis code artifacts
+
+# Results
+- View [summary](https://wandb.ai/abdulazizab/census-classification/runs/z9f34iok/overview?workspace=user-abdulazizab) of model metrics in WandB
+- View model slices output in WandB [table](https://wandb.ai/abdulazizab/census-classification/runs/h83eqmjg?workspace=user-abdulazizab)
+# Requirements
+[WandB](wandb.ai) account, as we will log model metrics using WandB
+
 # Installation
 
 ```bash
@@ -19,7 +26,11 @@ dvc pull # fetched data and model
 ```bash
 PYTHONPATH=. python CensusClassifier/train_model.py
 ```
-
+After training a new model, you can version it by:
+```bash
+dvc add model/{YOUR_MODEL}
+```
+And push it to your remote !
 ## Inference
 ```bash
 pass

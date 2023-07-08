@@ -3,9 +3,6 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
-    accuracy_score,
-    confusion_matrix,
-    f1_score,
     fbeta_score,
     precision_score,
     recall_score,

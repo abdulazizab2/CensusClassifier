@@ -2,4 +2,6 @@
     remote = remote-gdrive
 ['remote "remote-gdrive"']
     url = gdrive://1ucVXUwSeZ1SJxLFcbIN-kI1oNYr7Uonp
+['remote "remote-gdrive-github-actions"']
+    url = gdrive://1ucVXUwSeZ1SJxLFcbIN-kI1oNYr7Uonp
     gdrive_use_service_account = true

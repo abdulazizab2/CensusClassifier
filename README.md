@@ -12,7 +12,7 @@ wandb artifact get abdulazizab/census-classification/job-https___github.com_abdu
 
 # Usage
 ```bash
-dvc pull -r remote-gdrive # fetched data and model
+dvc pull # fetched data and model
 ```
 
 ## Training

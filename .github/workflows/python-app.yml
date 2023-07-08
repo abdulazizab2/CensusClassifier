@@ -35,8 +35,10 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: pull data and models
+      env:
+        GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_DVC }}
       run: |
-        dvc pull -r remote-gdrive
+        dvc pull
     - name: Test with pytest
       run: |
         pwd

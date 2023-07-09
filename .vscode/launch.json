@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug Tests",
+            "type": "python",
+            "request": "launch",
+            "purpose": ["debug-test"],
+            "module": "pytest",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "_PYTEST_RAISE": "1",
+                "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}"
+            },
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",

@@ -1,9 +1,20 @@
+import os
 import joblib
 import numpy as np
 import pandas as pd
 import pytest
 from sklearn.model_selection import train_test_split
 from CensusClassifier.constants import CAT_FEATURES
+
+
+@pytest.hookimpl(tryfirst=True)
+def pytest_exception_interact(call):
+    raise call.excinfo.value
+
+
+@pytest.hookimpl(tryfirst=True)
+def pytest_internalerror(excinfo):
+    raise excinfo.value
 
 
 @pytest.fixture(scope="session")

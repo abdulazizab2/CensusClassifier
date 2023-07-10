@@ -15,4 +15,4 @@ RUN chmod a+x .render/fetch_dvc.sh
 RUN --mount=type=secret,id=dvc-gdrive.json,dst=/etc/secrets/dvc-gdrive.json
 RUN /bin/bash -c "source ./.render/fetch_dvc.sh && dvc pull --remote remote-gdrive-github-actions"
 EXPOSE 8000
-CMD [ "uvicorn", "main:app" ]
+CMD [ "uvicorn", "main:app", "--host", "0.0.0.0" ]

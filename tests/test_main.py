@@ -52,7 +52,7 @@ def test_predict_under_or_equal_50K():
     }
 
     response = client.post("/predict", json=data)
-    assert response.json() == {"prediction": ">50K"}
+    assert response.json() == {"prediction": "<=50K"}
 
 
 def test_wrong_query():

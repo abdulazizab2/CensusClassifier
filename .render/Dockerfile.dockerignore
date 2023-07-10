@@ -1,0 +1,10 @@
+*
+!main.py
+!tests/
+!data/
+!model/
+!logs/
+!CensusClassifier/
+!requirements.txt
+!.git/
+!.dvc/

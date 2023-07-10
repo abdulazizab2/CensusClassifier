@@ -16,7 +16,7 @@ def model():
 def test_train_model(splitted_data):
     X_train, y_train = splitted_data
     try:
-        rf_classifier = train_model(X_train, y_train)
+        rf_classifier = train_model(X_train, y_train, save_model=False)
     except Exception as err:
         pytest.fail(f"Function raised an exception: {err}")
     assert rf_classifier is not None
@@ -27,7 +27,6 @@ def test_compute_model_metrics_slices(data, splitted_data, model):
     train, _ = data
     X, y = splitted_data
     preds = inference(model, X)
-    preds = np.where(preds == "<=50K", 0, 1)
     y = np.where(y == "<=50K", 0, 1)
     #
     with pytest.raises(Exception):

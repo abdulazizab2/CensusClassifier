@@ -11,7 +11,7 @@ from CensusClassifier.utils.logger import logging
 from typing import Dict
 
 
-def train_model(X_train, y_train):
+def train_model(X_train, y_train, save_model=True):
     """
     Trains a machine learning model and returns it.
 
@@ -21,6 +21,8 @@ def train_model(X_train, y_train):
         Training data.
     y_train : np.array
         Labels.
+    save_model: boolean
+        A boolean flag to save a model or not. Model will be saved in mode/
     Returns
     -------
     model
@@ -29,8 +31,9 @@ def train_model(X_train, y_train):
     rf_classifier = RandomForestClassifier(random_state=42)
     logging.info("INFO: Random forest classifier is training ...")
     rf_classifier.fit(X_train, y_train)
-    joblib.dump(rf_classifier, "./model/census-rf.joblib")
-    logging.info("INFO: Random forest classifier is saved in model/")
+    if save_model:
+        joblib.dump(rf_classifier, "./model/census-rf.joblib")
+        logging.info("INFO: Random forest classifier is saved in model/")
     return rf_classifier
 
 

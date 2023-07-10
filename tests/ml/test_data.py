@@ -14,7 +14,7 @@ def test_process_data(data):
     train, test = data
     try:
         _, _, encoder, lb = process_data(
-            train, CAT_FEATURES, label="salary", training=True
+            train, CAT_FEATURES, label="salary", training=True, save_encoder=False
         )
     except Exception as err:
         pytest.fail(f"Function raised an exception: {err}")

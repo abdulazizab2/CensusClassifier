@@ -19,7 +19,13 @@ def load_data(data_path):
 
 
 def process_data(
-    X, categorical_features=[], label=None, training=True, encoder=None, lb=None
+    X,
+    categorical_features=[],
+    label=None,
+    training=True,
+    encoder=None,
+    lb=None,
+    save_encoder=True,
 ):
     """Process the data used in the machine learning pipeline.
 
@@ -45,6 +51,8 @@ def process_data(
         Trained sklearn OneHotEncoder, only used if training=False.
     lb : sklearn.preprocessing._label.LabelBinarizer
         Trained sklearn LabelBinarizer, only used if training=False.
+    save_encoder: A boolean flag, if True, the encoder will be saved in mode/
+                    Has no effect if Training=False
 
     Returns
     -------
@@ -73,8 +81,9 @@ def process_data(
         encoder = OneHotEncoder(sparse=False, handle_unknown="ignore")
         lb = LabelBinarizer()
         X_categorical = encoder.fit_transform(X_categorical)
-        joblib.dump(encoder, "./model/categorical_encoder.joblib")
-        logging.info("INFO: categorical encoder is saved in model/")
+        if save_encoder:
+            joblib.dump(encoder, "./model/categorical_encoder.joblib")
+            logging.info("INFO: categorical encoder is saved in model/")
         y = lb.fit_transform(y.values).ravel()
     else:
         X_categorical = encoder.transform(X_categorical)

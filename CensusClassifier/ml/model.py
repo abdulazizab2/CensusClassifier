@@ -93,7 +93,7 @@ def compute_sliced_model_metrics_categorical(
         Dict: A pandas dataframe containing the slice metrics
     """
 
-    if not isinstance(df[feature].dtype, object):
+    if not df[feature].dtype == object:
         raise ValueError(
             f"Function expects a categorical feature. A non-categorical feature: {feature} is given"
         )

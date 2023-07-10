@@ -1,3 +1,7 @@
+# Introduction
+A machine learning model to predict salary range deployed in [render](https://render.com/) with a public API.
+- See [model card](docs/model_card.md) to read about the model and the ethical considerations.
+- See [usage](#usage) to use the features of the repository
 # Links
 
 - [Repository](https://github.com/abdulazizab2/CensusClassifier)
@@ -14,28 +18,39 @@
 ```bash
 pip install -r requirements.txt
 # Optional for downloading EDA notebook
-wandb artifact get abdulazizab/census-classification/job-https___github.com_abdulazizab2_CensusClassifier.git_explore_census_dataset.ipynb:v0
+wandb artifact get abdulazizab/census-classification/job-https___github.com_abdulazizab2_CensusClassifier.git_explore_census_dataset.ipynb:latest
 ```
 
 # Usage
+
+## Making predictions using HTTP requests on Render
+
+###
 ```bash
-dvc pull # fetched data and model
+pass
+```
+## Using CensusClassifier as a library
+```bash
+dvc pull # fetches data and model
 ```
 
-## Training
+### Training
 ```bash
 PYTHONPATH=. python CensusClassifier/train_model.py
 ```
 After training a new model, you can version it by:
 ```bash
 dvc add model/{YOUR_MODEL}
+dvc add model/{YOUR_ENCODER}
 ```
 And push it to your remote !
-## Inference
+### Inference
+1. Launch API server
 ```bash
-pass
+uvicorn main:app
 ```
+2. View docs at ```{IP}:{PORT}/docs``` on how to make inference using ```/predict```
 ## Unit Tests
 ```bash
-pass
+PYTHONPATH=. pytest
 ```

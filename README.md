@@ -10,27 +10,23 @@ A machine learning model to predict salary range deployed in [render](https://re
 # Results
 - View [summary](https://wandb.ai/abdulazizab/census-classification/runs/z9f34iok/overview?workspace=user-abdulazizab) of model metrics in WandB
 - View model slices output in WandB [table](https://wandb.ai/abdulazizab/census-classification/runs/h83eqmjg?workspace=user-abdulazizab)
-# Requirements
+
+# Usage
+
+## Making predictions using HTTP requests on Render
+App is deployed on Render and you may try it out by using Postman or any other tool of your convenience. A sample usage is in ```live_post_request.py```
+App is available at: https://census-classifier-api.onrender.com/
+## Using CensusClassifier as a library
+
+### Requirements
 [WandB](wandb.ai) account, as we will log model metrics using WandB
 
-# Installation
+### Installation
 
 ```bash
 pip install -r requirements.txt
 # Optional for downloading EDA notebook
 wandb artifact get abdulazizab/census-classification/job-https___github.com_abdulazizab2_CensusClassifier.git_explore_census_dataset.ipynb:latest
-```
-
-# Usage
-
-## Making predictions using HTTP requests on Render
-
-###
-```bash
-pass
-```
-## Using CensusClassifier as a library
-```bash
 dvc pull # fetches data and model
 ```
 
@@ -50,7 +46,7 @@ And push it to your remote !
 uvicorn main:app
 ```
 2. View docs at ```{IP}:{PORT}/docs``` on how to make inference using ```/predict```
-## Unit Tests
+### Unit Tests
 ```bash
 PYTHONPATH=. pytest
 ```

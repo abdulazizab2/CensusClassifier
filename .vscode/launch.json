@@ -5,10 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug FastAPI",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "main:app"
+            ]
+        },
+        {
             "name": "Debug Tests",
             "type": "python",
             "request": "launch",
-            "purpose": ["debug-test"],
+            "purpose": [
+                "debug-test"
+            ],
             "module": "pytest",
             "console": "integratedTerminal",
             "justMyCode": true,
@@ -24,7 +35,9 @@
             "cwd": "${workspaceFolder}",
             "program": "CensusClassifier/train_model.py",
             "console": "integratedTerminal",
-            "env": {"PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}"},
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}"
+            },
             "justMyCode": true
         }
     ]

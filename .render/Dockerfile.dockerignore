@@ -6,5 +6,7 @@
 !logs/
 !CensusClassifier/
 !requirements.txt
+!dvc-gdrive.json
 !.git/
 !.dvc/
+!.render/fetch_dvc.sh
